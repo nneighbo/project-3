@@ -2,3 +2,8 @@
   box-sizing: border-box;
   user-select: none;
 }
+
+body {
+  background-color: #f4f4f4;
+
+}
