@@ -1,4 +1,87 @@
 .table-container {
-    height: 100px;
-    padding: 10px 15px;
+    background-color: white;
+    margin: 10px 15px;
+}
+.table-container table {
+    width: 100%;
+    font-family: 'Inconsolata', monospace,Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #656a77;
+}
+
+.table-heading th {
+    border-bottom: 1px solid #e1e1e1;
+    color: #ca00ff;
+    font-weight: 400;    
+}
+
+
+.table-container tr {
+    height: 60px;
+    padding: 0 50px;
+}
+
+.table-container tr td:first-child, .table-container tr th:first-child {
+    padding-left: 5%;
+}
+
+.table-container tr td:last-child, .table-container tr th:last-child {
+    padding-right: 5%;
+}
+
+.table-container td, .table-container th {
+    width: 10%;
+    text-align: center;
+}
+
+.top-text {
+    color: #ca00ff;
+}
+
+.neg-text {
+    color: #cc0000;
+}
+
+.pos-text {
+    color: #1ab81a;
+}
+
+.table-row:nth-child(odd) {
+    background-color: #F7F7F7;
+}
+
+.save-stock {
+    background-color: #ca00ff;
+    border-radius: 3px;
+    border: none;
+    border-bottom: 2px solid #ba00e9;
+    color: white;
+    padding: 7px 15px 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+}
+
+.save-stock:hover {
+    background-color: #d220ff;
+    cursor: pointer;
+}
+
+.save-stock:active {
+    outline: none;
+}
+
+.save-stock:focus {
+    outline: none;
+}
+
+.saved {
+    background-color: #7e009e;
+    border-bottom: 2px solid #600079;
+}
+
+.saved:hover {
+    background-color: #a51fc7;
+    cursor: pointer;
 }
