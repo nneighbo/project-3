@@ -1,0 +1,34 @@
+.table-container {
+    background-color: white;
+    margin: 10px 15px;
+}
+
+.table-container table {
+    width: 100%;
+    font-family: 'Inconsolata', monospace,Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #656a77;
+}
+
+
+.table-container tr {
+    height: 60px;
+    padding: 0 50px;
+}
+
+.table-container tr td:first-child, .table-container tr th:first-child {
+    padding-left: 5%;
+}
+
+.table-container tr td:last-child, .table-container tr th:last-child {
+    padding-right: 5%;
+}
+
+.table-container td, .table-container th {
+    width: 10%;
+    text-align: center;
+}
+
+.table-container tbody tr:nth-child(even) {
+    background-color: #F7F7F7;
+}

@@ -1,0 +1,49 @@
+
+.top-text {
+    color: #7c47cd;
+}
+
+.neg-text {
+    color: #cc0000;
+}
+
+.pos-text {
+    color: #1ab81a;
+}
+
+
+.save-stock {
+    background-color: #7c47cd;
+    border-radius: 3px;
+    border: none;
+    border-bottom: 2px solid #ba00e9;
+    color: white;
+    padding: 7px 15px 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+}
+
+.save-stock:hover {
+    background-color: #844bda;
+    cursor: pointer;
+}
+
+.save-stock:active {
+    outline: none;
+}
+
+.save-stock:focus {
+    outline: none;
+}
+
+.saved {
+    background-color: #54239c;
+    border-bottom: 2px solid #461a86;
+}
+
+.saved:hover {
+    background-color: #6c34c0;
+    cursor: pointer;
+}
