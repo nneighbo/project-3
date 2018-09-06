@@ -13,8 +13,7 @@ import navItems from './navItems.json'
 // import MyDashboard from './components/MyDashboard'
 
 import './App.css';
-import API from "./utils/API.js"
-
+// import API from "./utils/API.js"
 
 class App extends Component {
   // state = {
