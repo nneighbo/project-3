@@ -18,7 +18,7 @@ class MyDashboard extends React.Component {
                         <th>Save This Stock</th>
                     </tr>
 
-                    <tr class="table-row">
+                    <tr className="table-row">
                         <td><span className="top-text">APPL</span><br></br>APPLE INC.</td>
                         <td>$224.32</td>
                         <td>$223.46</td>
