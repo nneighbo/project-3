@@ -11,23 +11,26 @@ import navItems from './navItems.json'
 
 import './App.css';
 
-import Dashboard from "./pages/Dashboard/Dashboard";
-import error from "./pages/error/errorpage"
+import MyDashboard from "./pages/MyDashboard/MyDashboard";
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
+import PopularStocks from "./pages/PopularStocks/PopularStocks";
+
 // import API from "./utils/API.js"
 
 const App = () => (
   <Router>
     <div>
-    <Container>
+      <Container>
         <NavColumn>
           <NavSide items={navItems} />
         </NavColumn>
         <ContentColumn>
           <NavTop />
-      <Switch>
-        <Route exact path="/" component={Dashboard} />
-        <Route component={error}/>
-      </Switch>
+          <Switch>
+            <Route exact path="/dashboard" component={MyDashboard} />
+            <Route exact path="/popular" component={PopularStocks} />
+            <Route component={ErrorPage} />
+          </Switch>
         </ContentColumn>
       </Container>
     </div>
