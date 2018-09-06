@@ -1,0 +1,19 @@
+{
+    "navItems":[
+        {
+            "page":"My Dashboard",
+            "key":"dashboard",
+            "icon":"/icons/home.png"
+        },
+        {
+            "page":"Popular Stocks",
+            "key":"popular",
+            "icon":"/icons/stock.png"
+        },
+        {
+            "page":"News Articles",
+            "key":"news",
+            "icon":"/icons/article.png"
+        }
+    ]
+}
