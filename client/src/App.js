@@ -10,7 +10,7 @@ import NavTop from './components/NavTop'
 
 import navItems from './navItems.json'
 
-// import MyDashboard from './components/MyDashboard'
+import MyDashboard from './components/MyDashboard'
 
 import './App.css';
 // import API from "./utils/API.js"
@@ -166,7 +166,7 @@ class App extends Component {
         <ContentColumn>
           <NavTop />
           {/* My Dashboard is a page and currently is in components */}
-          {/* <MyDashboard /> */}
+          <MyDashboard />
         </ContentColumn>
       </Container>
     );
