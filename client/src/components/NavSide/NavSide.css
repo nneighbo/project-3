@@ -53,6 +53,10 @@
     height: 20px;
 }
 
+a {
+    text-decoration: none;
+}
+
 .menu-item {
     height: 50px;
     padding-left:15px;
