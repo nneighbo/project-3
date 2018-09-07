@@ -3,6 +3,7 @@ import './NavTop.css'
 
 const NavTop = () => (
     <div className="nav-top">
+    <a href="/logout">Logout</a>
         <div className="search-container">
             <form action="submit">
                 <input type="text" placeholder="Search for a stock..."/>

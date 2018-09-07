@@ -18,7 +18,6 @@ class NavSide extends React.Component {
                     <div className="user">
                         <img id="img-profile" src={profile} alt="profile" />
                         <p>Current User</p>
-                        <img id="img-arrow" src={arrow} alt="arrow" />
                     </div>
 
                     {this.props.items.navItems.map((element) => (
