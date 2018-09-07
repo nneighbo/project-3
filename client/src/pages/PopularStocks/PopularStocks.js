@@ -113,7 +113,6 @@ class PopularStocks extends React.Component {
                 this.setState({ stocks: info });
             })
         });
-
     };
 
     render() {

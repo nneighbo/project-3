@@ -15,6 +15,7 @@ import MyDashboard from "./pages/MyDashboard/MyDashboard";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import PopularStocks from "./pages/PopularStocks/PopularStocks";
 import News from './pages/News/News';
+import Search from "./pages/Search/Search"
 
 // import API from "./utils/API.js"
 
@@ -32,6 +33,8 @@ const App = () => (
             <Route exact path="/dashboard" component={MyDashboard} />
             <Route exact path="/popular" component={PopularStocks} />
             <Route exact path="/news" component={News} />
+            <Route exact path="/search" component={Search} />
+            <Route exact path="/search/:symbol" component={Search} />
             <Route component={ErrorPage} />
           </Switch>
         </ContentColumn>
