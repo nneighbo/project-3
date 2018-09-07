@@ -18,11 +18,10 @@ class NavSide extends React.Component {
                     <div className="user">
                         <img id="img-profile" src={profile} alt="profile" />
                         <p>Current User</p>
-                        <img id="img-arrow" src={arrow} alt="arrow" />
                     </div>
 
                     {this.props.items.navItems.map((element) => (
-                        <Link to={`/${element.key}`}>
+                        <Link key={element.key} to={`/${element.key}`}>
                         <div key={element.key} className="menu-item">
                             <img src={element.icon} alt="menu icon" className="menu-icon"/>
                             <p className="menu-label">{element.page}</p>

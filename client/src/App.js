@@ -14,6 +14,7 @@ import './App.css';
 import MyDashboard from "./pages/MyDashboard/MyDashboard";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import PopularStocks from "./pages/PopularStocks/PopularStocks";
+import News from './pages/News/News';
 
 // import API from "./utils/API.js"
 
@@ -29,6 +30,7 @@ const App = () => (
           <Switch>
             <Route exact path="/dashboard" component={MyDashboard} />
             <Route exact path="/popular" component={PopularStocks} />
+            <Route exact path="/news" component={News} />
             <Route component={ErrorPage} />
           </Switch>
         </ContentColumn>
