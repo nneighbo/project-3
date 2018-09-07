@@ -24,5 +24,9 @@ export default {
 
     userStocks: function(user) {
         return axios.get("https://api.iextrading.com/1.0/stock/market/batch?symbols=" + user + "&types=quote,news")
+    },
+
+    getNews: function() {
+        return axios.get("https://api.iextrading.com/1.0/stock/market/news/last/5")
     }
 } 
