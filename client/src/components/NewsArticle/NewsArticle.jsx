@@ -2,6 +2,11 @@ import React from 'react';
 import './NewsArticle.css'
 
 class NewsArticle extends React.Component {
+    handleOnClick = (link) => {
+        // window.location.replace(link);
+        window.open(link, "_blank")
+      };
+
     render() {
         return (
             <div className="news-article-container">
@@ -12,7 +17,7 @@ class NewsArticle extends React.Component {
                 </div>
                 <p>{this.props.paragraph}</p>
                 <div className="button-align">
-                    <button>Read More</button>
+                    <button onClick={()=>this.handleOnClick(this.props.link)}>Read More</button>
                 </div>
             </div>
         )
