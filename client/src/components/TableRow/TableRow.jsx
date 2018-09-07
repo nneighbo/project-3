@@ -17,7 +17,6 @@ class TableRow extends React.Component {
     // article is saved or not.
 
     parseProp(data, type) {
-        console.log("parse")
         if (isNaN(data) && data !== "true" && data !== "false") {
             return (data);
         } else {

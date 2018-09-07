@@ -27,6 +27,7 @@ const App = () => (
         <ContentColumn>
           <NavTop />
           <Switch>
+            <Route exact path="/" component={PopularStocks} />
             <Route exact path="/dashboard" component={MyDashboard} />
             <Route exact path="/popular" component={PopularStocks} />
             <Route component={ErrorPage} />

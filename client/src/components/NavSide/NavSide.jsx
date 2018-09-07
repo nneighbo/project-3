@@ -22,7 +22,7 @@ class NavSide extends React.Component {
                     </div>
 
                     {this.props.items.navItems.map((element) => (
-                        <Link to={`/${element.key}`}>
+                        <Link key={element.key} to={`/${element.key}`}>
                         <div key={element.key} className="menu-item">
                             <img src={element.icon} alt="menu icon" className="menu-icon"/>
                             <p className="menu-label">{element.page}</p>
