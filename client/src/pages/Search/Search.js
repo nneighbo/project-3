@@ -74,7 +74,7 @@ class Search extends React.Component {
         this.testData()
 
         return (
-            <ContentContainer>
+            <div>
                 <ContentContainer>
                     <Table>
                         <TableHead />
@@ -109,7 +109,7 @@ class Search extends React.Component {
                         </ContentContainer>
                     );
                 })}
-            </ContentContainer>
+            </div>
         )
     }
 
