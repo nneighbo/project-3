@@ -33,28 +33,28 @@ class TableRow extends React.Component {
                     if (parseFloat(data) < 0) {
                         if (type === "percent") {
                             return (
-                                <span className="neg-text">-{Math.abs(parseFloat(data))}%</span>
+                                <span className="neg-text">-{Math.abs((Math.round(parseFloat(data) * 1000) / 1000))}%</span>
                             )
                         } else if (type === "dollar") {
                             return (
-                                <span className="neg-text">-${Math.abs(parseFloat(data))}</span>
+                                <span className="neg-text">-${Math.abs((Math.round(data * 100) / 100)).toFixed(2)}</span>
                             )
                         }
                     } else if (parseFloat(data) > 0) {
                         if (type === "percent") {
                             return (
-                                <span className="pos-text">{data}%</span>
+                                <span className="pos-text">{(Math.round(parseFloat(data) * 1000) / 1000)}%</span>
                             )
                         } else if (type === "dollar") {
                             return (
-                                <span className="pos-text">${data}</span>
+                                <span className="pos-text">${(Math.round(data * 100) / 100).toFixed(2)}</span>
                             )
                         }
                     }
                     break;
 
                 default:
-                    return (`$${data}`);
+                    return (`$${(Math.round(data * 100) / 100).toFixed(2)}`);
             }
         }
     }

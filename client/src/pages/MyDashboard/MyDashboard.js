@@ -5,6 +5,7 @@ import Table from '../../components/Table'
 import TableHead from '../../components/TableHead'
 import TableRow from '../../components/TableRow'
 import TableBody from '../../components/TableBody'
+import PageHeader from '../../components/PageHeader'
 import ContentContainer from '../../components/ContentContainer'
 
 class MyDashboard extends React.Component {
@@ -12,6 +13,10 @@ class MyDashboard extends React.Component {
     render() {
         return (
             <ContentContainer>
+                <PageHeader>
+                    <h1>My Dashboard</h1>
+                    <div></div>
+                </PageHeader>
                 <Table>
                     <TableHead />
                     <TableBody>

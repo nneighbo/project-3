@@ -34,6 +34,7 @@ class NavTop extends React.Component {
                             name="symbol"
                             type="text"
                             placeholder="Search for a stock..."
+                            autoComplete="off"
                             value={this.state.symbol}
                             onChange={this.handleInputChange}
                         />
