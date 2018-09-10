@@ -6,9 +6,7 @@ class CreateAccount extends React.Component {
     render(){
         return(
             <ContentContainer>
-                <AccountForm>
-                    <h1>sdf</h1>
-                </AccountForm>
+                <AccountForm />
             </ContentContainer>
         )
     }

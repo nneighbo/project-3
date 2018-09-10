@@ -1,0 +1,28 @@
+.form-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+#account-form {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.textbox {
+    font-family: "Montserrat", Arial, Helvetica, sans-serif;
+    width: 300px;
+    border: 1px solid #e1e1e1;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 3px;
+}
+
+#submit {
+    /* width: 150px; */
+}

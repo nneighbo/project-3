@@ -1,14 +1,13 @@
 import React from 'react';
 import ContentContainer from '../../components/ContentContainer';
-import LoginForm from '../../components/AccountForm';
+import LoginForm from '../../components/LoginForm';
+import './LogIn.css'
 
 class LogIn extends React.Component {
     render(){
         return(
             <ContentContainer>
-                <LoginForm>
-                    <h1>sdf</h1>
-                </LoginForm>
+                <LoginForm />
             </ContentContainer>
         )
     }

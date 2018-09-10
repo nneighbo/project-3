@@ -1,7 +1,7 @@
 import React from 'react';
-import './AccountForm.css'
+import './LoginForm.css'
 
-class AccountForm extends React.Component {
+class LoginForm extends React.Component {
     state = {
         username: "",
         password: ""
@@ -30,4 +30,4 @@ class AccountForm extends React.Component {
     }
 }
 
-export default AccountForm;
+export default LoginForm;
