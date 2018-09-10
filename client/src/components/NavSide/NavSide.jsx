@@ -19,6 +19,9 @@ class NavSide extends React.Component {
                         <img id="img-profile" src={profile} alt="profile" />
                         <p>Current User</p>
                     </div>
+                    <div className="account">
+                        <p>Logout</p>
+                    </div>
 
                     {this.props.items.navItems.map((element) => (
                         <Link key={element.key} to={`/${element.key}`}>
