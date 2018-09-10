@@ -9,7 +9,7 @@ class ErrorPage extends Component {
   render() {
     return (
       <ContentContainer>
-        <div class="error-page">
+        <div className="error-page">
           <h1>Whoops! Looks like you're lost!</h1>
           <p>Use the buttons if you would like to navigate back.</p>
         </div>

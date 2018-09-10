@@ -99,7 +99,9 @@ class Search extends React.Component {
                 </ContentContainer>
                 {this.state.news.map((article, i) => {
                     return (
-                        <ContentContainer>
+                        <ContentContainer
+                            key={i}
+                        >
                             <NewsArticle
                                 key={i}
                                 title={article.news.headline}

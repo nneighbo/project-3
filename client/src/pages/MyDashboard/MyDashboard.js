@@ -15,29 +15,30 @@ class MyDashboard extends React.Component {
     state = {
         stocks: [],
         coins: [],
-        stockSymbols: ["aapl", "PRQR", "RMNI", "SIEB"],
-        cryptoSymbols: ["BTCUSDT", "ETHUSDT", "EOSUSDT", "TLRY"]
+        stockSymbols: ["AAPL", "PRQR", "RMNI", "SIEB"],
+        cryptoSymbols: ["BTCUSDT", "ETHUSDT", "EOSUSDT"]
     }
 
     renderStocks = (stockSymbols) => {
         API.userStocks(stockSymbols)
             .then(res => {
-                let items = []
-                // res.data.forEach(element => {
-                //     items.push({
-                //         sym: element.symbol,
-                //         name: element.companyName,
-                //         latestPrice: element.latestPrice,
-                //         open: element.open,
-                //         prevClose: element.previousClose,
-                //         low: element.low,
-                //         high: element.high,
-                //         change: element.change,
-                //         changePerc: element.changePercent,
-                //         isSaved: true
-                //     })
-                // });
-                console.log(res.data)
+                let info = []
+                Object.keys(res.data).map((item, i) => {
+                    info.push({
+                        sym: res.data[item].quote.symbol,
+                        name: res.data[item].quote.companyName,
+                        latestPrice: res.data[item].quote.latestPrice,
+                        open: res.data[item].quote.open,
+                        prevClose: res.data[item].quote.previousClose,
+                        low: res.data[item].quote.low,
+                        high: res.data[item].quote.high,
+                        change: res.data[item].quote.change,
+                        changePerc: res.data[item].quote.changePercent,
+                        isSaved: false
+                    })
+                })
+                info.concat(this.state.stocks);
+                this.setState({ stocks: info });
             })
             .catch(err => { console.log(err) })
     }
@@ -45,7 +46,23 @@ class MyDashboard extends React.Component {
     renderCoins = (cryptoSymbols) => {
         API.userStocks(cryptoSymbols)
             .then(res => {
-                console.log(res.data)
+                let info = []
+                Object.keys(res.data).map((item, i) => {
+                    info.push({
+                        sym: res.data[item].quote.symbol,
+                        name: res.data[item].quote.companyName,
+                        latestPrice: res.data[item].quote.latestPrice,
+                        open: res.data[item].quote.open,
+                        prevClose: res.data[item].quote.previousClose,
+                        low: res.data[item].quote.low,
+                        high: res.data[item].quote.high,
+                        change: res.data[item].quote.change,
+                        changePerc: res.data[item].quote.changePercent,
+                        isSaved: false
+                    })
+                })
+                info.concat(this.state.coins);
+                this.setState({ coins: info });
             })
             .catch(err => { console.log(err) })
     }
@@ -66,29 +83,35 @@ class MyDashboard extends React.Component {
                     <Table>
                         <TableHead />
                         <TableBody>
-                            <TableRow
-                                stockNameShort="APPL"
-                                stockNameLong="APPLE INC."
-                                stockLastPrice="224.32"
-                                stockOpen="223.46"
-                                stockPrevClose="222.91"
-                                stockDayRangeHigh="324.32"
-                                stockDayRangeLow="225.84"
+                            {this.state.stocks.map((stock, index) => {
+                                return (
+                                    <TableRow
+                                        key={stock.sym}
+                                        stockNameShort={stock.sym}
+                                        stockNameLong={stock.name}
+                                        stockLastPrice={stock.latestPrice}
+                                        stockOpen={stock.open}
+                                        stockPrevClose={stock.prevClose}
+                                        stockDayRangeHigh={stock.high}
+                                        stockDayRangeLow={stock.low}
 
-                                // The front end determines
-                                // whether or not the number is
-                                // positive or negative, so all
-                                // you need to do is pass the
-                                // data from the API through
+                                        // The front end determines
+                                        // whether or not the number is
+                                        // positive or negative, so all
+                                        // you need to do is pass the
+                                        // data from the API through
 
-                                stockDayChangeDollar="-1.32"
-                                stockDayChangePercent="-0.74"
+                                        stockDayChangeDollar={stock.change}
+                                        stockDayChangePercent={stock.changePerc}
 
-                                // Whether or not the stock
-                                // is saved determines the
-                                // text and color of the button
-                                stockSaved="true"
-                            />
+                                        // Whether or not the stock
+                                        // is saved determines the
+                                        // text and color of the button
+                                        stockSaved={stock.isSaved}
+                                    />
+                                )
+                            })
+                            }
                         </TableBody>
                     </Table>
                 </ContentContainer>
@@ -96,29 +119,35 @@ class MyDashboard extends React.Component {
                     <Table>
                         <TableHeadCrypto />
                         <TableBody>
-                            <TableRow
-                                stockNameShort="BTCUSDT"
-                                stockNameLong="BitCoin"
-                                stockLastPrice="224.32"
-                                stockOpen="223.46"
-                                stockPrevClose="222.91"
-                                stockDayRangeHigh="324.32"
-                                stockDayRangeLow="225.84"
+                            {this.state.coins.map((stock, index) => {
+                                return (
+                                    <TableRow
+                                        key={stock.sym}
+                                        stockNameShort={stock.sym}
+                                        stockNameLong={stock.name}
+                                        stockLastPrice={stock.latestPrice}
+                                        stockOpen={stock.open}
+                                        stockPrevClose={stock.prevClose}
+                                        stockDayRangeHigh={stock.high}
+                                        stockDayRangeLow={stock.low}
 
-                                // The front end determines
-                                // whether or not the number is
-                                // positive or negative, so all
-                                // you need to do is pass the
-                                // data from the API through
+                                        // The front end determines
+                                        // whether or not the number is
+                                        // positive or negative, so all
+                                        // you need to do is pass the
+                                        // data from the API through
 
-                                stockDayChangeDollar="-1.32"
-                                stockDayChangePercent="-0.74"
+                                        stockDayChangeDollar={stock.change}
+                                        stockDayChangePercent={stock.changePerc}
 
-                                // Whether or not the stock
-                                // is saved determines the
-                                // text and color of the button
-                                stockSaved="true"
-                            />
+                                        // Whether or not the stock
+                                        // is saved determines the
+                                        // text and color of the button
+                                        stockSaved={stock.isSaved}
+                                    />
+                                )
+                            })
+                            }
                         </TableBody>
                     </Table>
                 </ContentContainer>
