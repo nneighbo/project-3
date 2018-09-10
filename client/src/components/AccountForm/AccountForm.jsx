@@ -6,7 +6,7 @@ class AccountForm extends React.Component {
             <form id="account-form" action="post">
                 <input type="text" name="username" placeholder="Username" />
                 <input type="password" name="password" placeholder="Password"/>
-                <input type="submit" value="Submit"></input>
+                <input type="submit" value="Submit" onClick={this.state.btnFunc}></input>
             </form>
         )
     }

@@ -7,7 +7,7 @@ export default {
     },
 
     getCrypto: function(coin) {
-        return axios.get("https://api.iextrading.com/1.0/stock/" + coin + "/batch?types=quote,logo,news")
+        return axios.get("https://api.iextrading.com/1.0/stock/market/crypto")
     },
 
     getTodaysEarnings: function() {

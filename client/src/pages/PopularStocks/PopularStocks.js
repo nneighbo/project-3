@@ -10,86 +10,21 @@ import API from "../../utils/API"
 
 class PopularStocks extends React.Component {
     state = {
-        stocks: []
-    }
-
-    getBto = () => {
-        API.getTodaysEarnings()
-            .then(res => {
-                res.data.bto.map((item, i) => {
-                    // this.setState({
-                    //   stocks: [{
-                    //     name: item.quote.companyName,
-                    //     latestPrice: item.quote.latestPrice,
-                    //     open: item.quote.open,
-                    //     prevClose: item.quote.previousClose,
-                    //     low: item.quote.low,
-                    //     high: item.quote.high,
-                    //     change: item.quote.change,
-                    //     changePerc: item.quote.changePercent
-                    //   }]
-                    // }) 
-                    console.log(item)
-                })
-            })
-            .catch(err => { console.log(err) })
-    }
-
-    getAmc = () => {
-        API.getTodaysEarnings()
-            .then(res => {
-                res.data.amc.map((item, i) => {
-                    // this.setState({
-                    //     stocks: [{
-                    //         name: item.quote.companyName,
-                    //         latestPrice: item.quote.latestPrice,
-                    //         open: item.quote.open,
-                    //         prevClose: item.quote.previousClose,
-                    //         low: item.quote.low,
-                    //         high: item.quote.high,
-                    //         change: item.quote.change,
-                    //         changePerc: item.quote.changePercent
-                    //     }]
-                    // })
-                })
-            })
-            .catch(err => { console.log(err) })
-    }
-
-    botFive = () => {
-        API.botFive()
-            .then(res => {
-                let data = [];
-                res.data.map((item, i) => {
-                    data.push({
-                        name: item.companyName,
-                        latestPrice: item.latestPrice,
-                        open: item.open,
-                        prevClose: item.previousClose,
-                        low: item.low,
-                        high: item.high,
-                        change: item.change,
-                        changePerc: item.changePercent
-                    });
-                });
-                data.concat(this.state.stocks);
-                this.setState({ stocks: data });
-            })
-            .catch(err => console.log(err))
-    }
-
-
-    topFive = () => {
-        return API.topFive();
+        stocks: [],
+        buttonText: "Switch To Crpyto",
+        switchFunction: () => this.renderCrpto()
     }
 
     componentDidMount = () => {
+        this.renderStock()
+    };
 
+    renderStock = () => {
         // this.getBto()
         // this.getAmc()
         let data = [
             API.topFive(),
-            API.botFive()
+            API.botFive(),
         ];
 
         Promise.all(data).then(res => {
@@ -113,7 +48,38 @@ class PopularStocks extends React.Component {
                 this.setState({ stocks: info });
             })
         });
-    };
+
+        this.setState({ buttonText: "Switch To Crypto", })
+        this.setState({ switchFunction: () => this.renderCrpto() })
+    }
+
+    renderCrpto = () => {
+        API.getCrypto()
+            .then(res => {
+                let info = []
+                res.data.forEach((item, i) => {
+                    info.push({
+                        sym: item.symbol,
+                        name: item.companyName,
+                        latestPrice: item.latestPrice,
+                        open: item.open,
+                        prevClose: item.previousClose,
+                        low: item.low,
+                        high: item.high,
+                        change: item.change,
+                        changePerc: item.changePercent,
+                        isSaved: false
+                    });
+                    info.concat(this.state.stocks);
+                    this.setState({ stocks: info });
+                })
+                console.log(info)
+            })
+            .catch(err => { console.log(err) })
+
+        this.setState({ buttonText: "Switch To Stock", })
+        this.setState({ switchFunction: () => this.renderStock() })
+    }
 
     render() {
         console.log(this.state)
@@ -121,6 +87,11 @@ class PopularStocks extends React.Component {
             <ContentContainer>
                 <Table>
                     <TableHead />
+                    <button
+                        onClick={this.state.switchFunction}
+                    >
+                        {this.state.buttonText}
+                    </button>
                     <TableBody>
                         {this.state.stocks.map((stock, index) => {
                             return (
@@ -148,9 +119,9 @@ class PopularStocks extends React.Component {
                                     // text and color of the button
                                     stockSaved={stock.isSaved}
                                 />
-
                             )
-                        })}
+                        })
+                        }
                     </TableBody>
                 </Table>
             </ContentContainer>

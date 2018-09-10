@@ -40,7 +40,6 @@ class Search extends React.Component {
 
         Promise.all(data).then(res => {
             let stock = res[0].data.quote;
-            // let crypto = res[0].data.quote; 
             let articles = res[0].data.news
             let news = []
 
