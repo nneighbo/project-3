@@ -6,6 +6,7 @@ import TableHead from '../../components/TableHead'
 import TableRow from '../../components/TableRow'
 import TableBody from '../../components/TableBody'
 import ContentContainer from '../../components/ContentContainer'
+import NewsArticle from "../../components/NewsArticle"
 
 import API from "../../utils/API"
 
@@ -19,15 +20,29 @@ class Search extends React.Component {
     }
 
     componentDidMount = () => {
+        this.renderData()
+    }
+
+     testData = (params) => {
+         let search = this.props.match.params.symbol;
+         let symbol = this.state.stock.sym
+        if (search.toUpperCase() != symbol){
+            console.log("success")
+            this.renderData()
+        }
+    }
+
+    renderData = () => {
         let data = [
             API.getStock(this.props.match.params.symbol),
-            API.getCrypto(this.props.match.params.symbol + "USDT")
+            API.getCrypto(this.props.match.params.symbol)
         ];
 
         Promise.all(data).then(res => {
             let stock = res[0].data.quote;
-            let crypto = res[0].data.quote;
-            console.log(res[0].data);
+            // let crypto = res[0].data.quote; 
+            let articles = res[0].data.news
+            let news = []
 
             this.setState({
                 stock: {
@@ -43,6 +58,19 @@ class Search extends React.Component {
                     isSaved: false
                 }
             });
+
+            articles.forEach(element => {
+                news.push({
+                    news: {
+                        date: element.datatime,
+                        headline: element.headline,
+                        url: element.url,
+                        summary: element.summary,
+                    }
+                })
+            });
+            news.concat(this.state.news);
+            this.setState({ news: news });
 
             this.setState({
                 coin: {
@@ -62,7 +90,8 @@ class Search extends React.Component {
         });
     };
     render() {
-        console.log(this.state.coin)
+        this.testData()
+        console.log(this.state)
         return (
             <ContentContainer>
                 <Table>
@@ -78,22 +107,25 @@ class Search extends React.Component {
                             stockDayRangeHigh={this.state.stock.high}
                             stockDayRangeLow={this.state.stock.low}
 
-                            // The front end determines
-                            // whether or not the number is
-                            // positive or negative, so all
-                            // you need to do is pass the
-                            // data from the API through
-
                             stockDayChangeDollar={this.state.stock.change}
                             stockDayChangePercent={this.state.stock.changePerc}
 
-                            // Whether or not the stock
-                            // is saved determines the
-                            // text and color of the button
                             stockSaved={this.state.stock.isSaved}
                         />
                     </TableBody>
                 </Table>
+                {this.state.news.map((article,i) => {
+                    return (
+                    <ContentContainer>
+                        <NewsArticle
+                            key={i}
+                            title={article.news.headline}
+                            paragraph={article.news.summary}
+                            link={article.news.url}
+                        />
+                    </ContentContainer>
+                    );
+                })}
             </ContentContainer>
         )
     }
