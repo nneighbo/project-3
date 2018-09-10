@@ -5,6 +5,7 @@ import Table from '../../components/Table'
 import TableHead from '../../components/TableHead'
 import TableRow from '../../components/TableRow'
 import TableBody from '../../components/TableBody'
+import PageHeader from '../../components/PageHeader'
 import ContentContainer from '../../components/ContentContainer'
 import TableHeadCrypto from "../../components/TableHeadCrypto"
 import API from "../../utils/API"
@@ -14,8 +15,8 @@ class MyDashboard extends React.Component {
     state = {
         stocks: [],
         coins: [],
-        stockSymbols: ["aapl","PRQR","RMNI","SIEB"],
-        cryptoSymbols: ["BTCUSDT","ETHUSDT","EOSUSDT","TLRY"]
+        stockSymbols: ["aapl", "PRQR", "RMNI", "SIEB"],
+        cryptoSymbols: ["BTCUSDT", "ETHUSDT", "EOSUSDT", "TLRY"]
     }
 
     renderStocks = (stockSymbols) => {
@@ -56,8 +57,12 @@ class MyDashboard extends React.Component {
 
     render() {
         return (
-            <ContentContainer>
+            <div>
                 <ContentContainer>
+                    <PageHeader>
+                        <h1>My Dashboard</h1>
+                        <div></div>
+                    </PageHeader>
                     <Table>
                         <TableHead />
                         <TableBody>
@@ -117,7 +122,7 @@ class MyDashboard extends React.Component {
                         </TableBody>
                     </Table>
                 </ContentContainer>
-            </ContentContainer>
+            </div>
         )
     }
 

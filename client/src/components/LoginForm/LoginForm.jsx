@@ -23,7 +23,7 @@ class LoginForm extends React.Component {
                     <input className="textbox" value={this.state.password} onChange={this.handleInputChange} type="password" name="password" placeholder="Password" />
 
                     {/* The CSS styling for this button is in /src/App.css */}
-                    <input id="submit" type="submit" value="Create Account"></input>
+                    <input id="submit" type="submit" value="Log In"></input>
                 </form>
             </div>
         )

@@ -5,6 +5,7 @@ import Table from '../../components/Table'
 import TableHead from '../../components/TableHead'
 import TableRow from '../../components/TableRow'
 import TableBody from '../../components/TableBody'
+import PageHeader from '../../components/PageHeader'
 import ContentContainer from '../../components/ContentContainer'
 import API from "../../utils/API"
 import TableHeadCrypto from "../../components/TableHeadCrypto"
@@ -89,13 +90,16 @@ class PopularStocks extends React.Component {
         console.log(this.state)
         return (
             <ContentContainer>
-                <Table>
-                    {this.state.tableHead}
+                <PageHeader>
+                    <h1>Popular Stocks</h1>
                     <button
                         onClick={this.state.switchFunction}
                     >
                         {this.state.buttonText}
                     </button>
+                </PageHeader>
+                <Table>
+                    <TableHead />
                     <TableBody>
                         {this.state.stocks.map((stock, index) => {
                             return (
