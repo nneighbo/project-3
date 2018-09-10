@@ -27,18 +27,18 @@ class News extends React.Component {
                     data, map the ContentContainer, not just the NewsArticle.
                     Each article will have its own ContentContainer */}
                     
-                <ContentContainer>
                 {this.state.news.map(article => {
                     return (
+                <ContentContainer>
                       <NewsArticle
                         key={article.headline}
                         title={article.headline}
                         paragraph={article.summary}
                         link={article.url}
                       />
+                </ContentContainer>
                     );
                   })}
-                </ContentContainer>
                 
             </div>
         )
