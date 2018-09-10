@@ -7,12 +7,14 @@ import TableRow from '../../components/TableRow'
 import TableBody from '../../components/TableBody'
 import ContentContainer from '../../components/ContentContainer'
 import API from "../../utils/API"
+import TableHeadCrypto from "../../components/TableHeadCrypto"
 
 class PopularStocks extends React.Component {
     state = {
         stocks: [],
         buttonText: "Switch To Crpyto",
-        switchFunction: () => this.renderCrpto()
+        switchFunction: () => this.renderCrpto(),
+        tableHead: <TableHead/>
     }
 
     componentDidMount = () => {
@@ -51,6 +53,7 @@ class PopularStocks extends React.Component {
 
         this.setState({ buttonText: "Switch To Crypto", })
         this.setState({ switchFunction: () => this.renderCrpto() })
+        this.setState({ tableHead: <TableHead/>})
     }
 
     renderCrpto = () => {
@@ -79,6 +82,7 @@ class PopularStocks extends React.Component {
 
         this.setState({ buttonText: "Switch To Stock", })
         this.setState({ switchFunction: () => this.renderStock() })
+        this.setState({ tableHead: <TableHeadCrypto/>})
     }
 
     render() {
@@ -86,7 +90,7 @@ class PopularStocks extends React.Component {
         return (
             <ContentContainer>
                 <Table>
-                    <TableHead />
+                    {this.state.tableHead}
                     <button
                         onClick={this.state.switchFunction}
                     >

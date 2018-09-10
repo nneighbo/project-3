@@ -23,11 +23,10 @@ class Search extends React.Component {
         this.renderData()
     }
 
-     testData = (params) => {
-         let search = this.props.match.params.symbol;
-         let symbol = this.state.stock.sym
-        if (search.toUpperCase() != symbol){
-            console.log("success")
+    testData = (params) => {
+        let search = this.props.match.params.symbol;
+        let symbol = this.state.stock.sym
+        if (search.toUpperCase() !== symbol) {
             this.renderData()
         }
     }
@@ -35,7 +34,6 @@ class Search extends React.Component {
     renderData = () => {
         let data = [
             API.getStock(this.props.match.params.symbol),
-            API.getCrypto(this.props.match.params.symbol)
         ];
 
         Promise.all(data).then(res => {
@@ -70,59 +68,45 @@ class Search extends React.Component {
             });
             news.concat(this.state.news);
             this.setState({ news: news });
-
-            this.setState({
-                coin: {
-                    sym: crypto.symbol,
-                    name: crypto.companyName,
-                    latestPrice: crypto.latestPrice,
-                    open: crypto.open,
-                    prevClose: crypto.previousClose,
-                    low: crypto.low,
-                    high: crypto.high,
-                    change: crypto.change,
-                    changePerc: crypto.changePercent,
-                    isSaved: false
-                }
-            });
-
         });
     };
     render() {
         this.testData()
-        console.log(this.state)
+
         return (
             <ContentContainer>
-                <Table>
-                    <TableHead />
-                    <TableBody>
-                        <TableRow
-                            key={this.state.stock.sym}
-                            stockNameShort={this.state.stock.sym}
-                            stockNameLong={this.state.stock.name}
-                            stockLastPrice={this.state.stock.latestPrice}
-                            stockOpen={this.state.stock.open}
-                            stockPrevClose={this.state.stock.prevClose}
-                            stockDayRangeHigh={this.state.stock.high}
-                            stockDayRangeLow={this.state.stock.low}
+                <ContentContainer>
+                    <Table>
+                        <TableHead />
+                        <TableBody>
+                            <TableRow
+                                key={this.state.stock.sym}
+                                stockNameShort={this.state.stock.sym}
+                                stockNameLong={this.state.stock.name}
+                                stockLastPrice={this.state.stock.latestPrice}
+                                stockOpen={this.state.stock.open}
+                                stockPrevClose={this.state.stock.prevClose}
+                                stockDayRangeHigh={this.state.stock.high}
+                                stockDayRangeLow={this.state.stock.low}
 
-                            stockDayChangeDollar={this.state.stock.change}
-                            stockDayChangePercent={this.state.stock.changePerc}
+                                stockDayChangeDollar={this.state.stock.change}
+                                stockDayChangePercent={this.state.stock.changePerc}
 
-                            stockSaved={this.state.stock.isSaved}
-                        />
-                    </TableBody>
-                </Table>
-                {this.state.news.map((article,i) => {
+                                stockSaved={this.state.stock.isSaved}
+                            />
+                        </TableBody>
+                    </Table>
+                </ContentContainer>
+                {this.state.news.map((article, i) => {
                     return (
-                    <ContentContainer>
-                        <NewsArticle
-                            key={i}
-                            title={article.news.headline}
-                            paragraph={article.news.summary}
-                            link={article.news.url}
-                        />
-                    </ContentContainer>
+                        <ContentContainer>
+                            <NewsArticle
+                                key={i}
+                                title={article.news.headline}
+                                paragraph={article.news.summary}
+                                link={article.news.url}
+                            />
+                        </ContentContainer>
                     );
                 })}
             </ContentContainer>
