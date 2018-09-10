@@ -23,8 +23,6 @@ class PopularStocks extends React.Component {
     };
 
     renderStock = () => {
-        // this.getBto()
-        // this.getAmc()
         let data = [
             API.topFive(),
             API.botFive(),
@@ -87,7 +85,6 @@ class PopularStocks extends React.Component {
     }
 
     render() {
-        console.log(this.state)
         return (
             <ContentContainer>
                 <PageHeader>
