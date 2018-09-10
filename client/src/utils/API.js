@@ -28,5 +28,9 @@ export default {
 
     getNews: function() {
         return axios.get("https://api.iextrading.com/1.0/stock/market/news/last/5")
-    }
+    },
+
+    createAccount: function(userData) {
+        return axios.post("/api/stocks", userData);
+      }
 } 
