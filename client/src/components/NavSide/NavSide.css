@@ -100,10 +100,18 @@ a {
     background-color: #484f53;
 }
 
-.account p {
+.account a {
     font-family:"Montserrat", Arial, Helvetica, sans-serif;
-    color: #e9e9e9;
     font-size: 14px;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    color: #e9e9e9;
     opacity: 0.5;
 
 }

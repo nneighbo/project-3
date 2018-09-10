@@ -27,9 +27,6 @@ class NavTop extends React.Component {
         return (
             <div className="nav-top">
                 <div>
-                <a href="/login">Login</a>
-                <a href="/create">Create Account</a>
-                <a href="/logout">Logout</a>
                 </div>
                 <div className="search-container">
                     <form action="search" onSubmit={this.handleFormSubmit}>
