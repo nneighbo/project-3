@@ -22,8 +22,8 @@ passport.use(new LocalStrategy(
                 return done(null, false, {
                     message: "Incorrect password."
                 });
-            } else {
-                console.log("Logged In")
+            } else if(dbUser.validPassword(password)){
+                console.log("Logged In", dbUser)
                 return done(null, dbUser);
             }
         });

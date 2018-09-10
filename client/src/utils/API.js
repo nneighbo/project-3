@@ -32,5 +32,10 @@ export default {
 
     createAccount: function(userData) {
         return axios.post("/api/stocks", userData);
-      }
+    },
+
+    login: function(userData) {
+        return axios.post("/api/login", userData);
+    }
+    
 } 
