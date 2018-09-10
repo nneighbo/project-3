@@ -3,6 +3,28 @@ import './TableRow.css'
 
 class TableRow extends React.Component {
 
+    state = {
+        clickFunc: () => this.saveSym()
+    }
+
+    saveSym = (sym) => {
+        console.log(this.props.stockNameShort,"is saved: ",this.props.stockSaved)
+        console.log(this.props)
+    }
+
+    unSaveSym = (sym) => {
+        console.log("unsave")
+    }
+    
+    componentDidMount = () => {
+        if(this.props.stockSaved === true){
+            this.setState({clickFunc: () => this.unSaveSym()})
+        }
+        if(this.props.stockSaved === false){
+            this.setState({clickFunc: () => this.saveSym()})
+        }
+    }
+
     // parseProp sets up all the data based on the props sent to it.
 
     // data needs to be the prop passed in
@@ -17,14 +39,14 @@ class TableRow extends React.Component {
     // article is saved or not.
 
     parseProp(data, type) {
-        if (isNaN(data) && data !== "true" && data !== "false") {
+        if (isNaN(data) && data !== true && data !== false) {
             return (data);
         } else {
             switch (type) {
                 case "button":
-                    if (data === "true") {
+                    if (data === true) {
                         return (<button className="save-stock saved">Saved!</button>)
-                    } else if (data === "false") {
+                    } else if (data === false) {
                         return (<button className="save-stock">Save</button>)
                     }
                     break;
@@ -95,7 +117,10 @@ class TableRow extends React.Component {
                 <td>
                     {this.parseProp(this.props.stockDayChangePercent, "percent")}
                 </td>
-                <td>{this.parseProp(this.props.stockSaved, "button")}</td>
+                <td
+                onClick={this.state.clickFunc}
+                >
+                {this.parseProp(this.props.stockSaved, "button")}</td>
             </tr>
         )
     }
