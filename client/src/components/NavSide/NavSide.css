@@ -126,3 +126,7 @@ a {
     cursor: auto;
     background-color: #2a3135;
 }
+
+.account-wrapper {
+    overflow: hidden;
+}
