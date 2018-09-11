@@ -9,7 +9,7 @@ import PageHeader from '../../components/PageHeader'
 import ContentContainer from '../../components/ContentContainer'
 import TableHeadCrypto from "../../components/TableHeadCrypto"
 import API from "../../utils/API"
-import { throws } from 'assert';
+
 
 class MyDashboard extends React.Component {
     state = {
@@ -50,7 +50,7 @@ class MyDashboard extends React.Component {
                         high: res.data[item].quote.high,
                         change: res.data[item].quote.change,
                         changePerc: res.data[item].quote.changePercent,
-                        isSaved: false
+                        isSaved: true
                     })
                 })
                 info.concat(this.state.stocks);
@@ -74,7 +74,7 @@ class MyDashboard extends React.Component {
                         high: res.data[item].quote.high,
                         change: res.data[item].quote.change,
                         changePerc: res.data[item].quote.changePercent,
-                        isSaved: false
+                        isSaved: true
                     })
                 })
                 info.concat(this.state.coins);
