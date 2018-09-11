@@ -19,32 +19,29 @@ class TableRow extends React.Component {
         }
     }
 
-    getuser = ()=>{
-        API.getuser().then(res=>{
-            let user= res.data._id
-            // console.log(res.data._id)
-            if(this.state.user !== user && user !== undefined){
+    getuser = () => {
+        API.getuser().then(res => {
+            let user = res.data._id
+            console.log(res.data._id)
+            if (this.state.user !== user && user !== undefined) {
                 this.setState({
                     user: {
-                        id:user
+                        id: user
                     }
                 })
             }
         })
-        .catch(err => console.log(err));
+            .catch(err => console.log(err));
     }
-    
+
 
     saveSym = (sym) => {
-        console.log(this.props.stockNameShort, "is saved: ", this.props.stockSaved)
-        console.log(this.props)
         API.addStock({
-            _id:this.state.user,
-            stock:this.props.stockNameShort
-        }
-        )
-        .then(req =>{console.log("test",req)})
-        .catch(error => console.log("error",error.response))
+            _id: this.state.user,
+            stock: this.props.stockNameShort
+        })
+            .then(res => { console.log("test", res.data) })
+            .catch(error => console.log("error", error.response))
     }
 
     unSaveSym = (sym) => {
@@ -63,19 +60,19 @@ class TableRow extends React.Component {
 
     handleMouseHover() {
         this.setState(this.toggleHoverState);
-      }
-    
-      toggleHoverState(state) {
+    }
+
+    toggleHoverState(state) {
         if (this.state.dynamicButton === "Saved!") {
             return {
                 dynamicButton: "Unsave",
-              };
+            };
         } else if (this.state.dynamicButton === "Unsave") {
             return {
                 dynamicButton: "Saved!",
-              };
+            };
         }
-      }
+    }
 
     // parseProp sets up all the data based on the props sent to it.
 
