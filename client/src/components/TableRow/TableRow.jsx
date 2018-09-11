@@ -18,12 +18,31 @@ class TableRow extends React.Component {
             stocks: []
         }
     }
+
+    getuser = ()=>{
+        API.getuser().then(res=>{
+            let user= res.data._id
+            // console.log(res.data._id)
+            if(this.state.user !== user && user !== undefined){
+                this.setState({
+                    user: {
+                        id:user
+                    }
+                })
+            }
+        })
+        .catch(err => console.log(err));
+    }
     
 
     saveSym = (sym) => {
         console.log(this.props.stockNameShort, "is saved: ", this.props.stockSaved)
         console.log(this.props)
-        API.addStock()
+        API.addStock({
+            _id:this.state.user,
+            stock:this.props.stockNameShort
+        }
+        )
         .then(req =>{console.log("test",req)})
         .catch(error => console.log("error",error.response))
     }
@@ -33,6 +52,7 @@ class TableRow extends React.Component {
     }
 
     componentDidMount = () => {
+        this.getuser()
         if (this.props.stockSaved === true) {
             this.setState({ clickFunc: () => this.unSaveSym() })
         }

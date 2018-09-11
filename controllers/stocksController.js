@@ -10,8 +10,9 @@ module.exports = {
   },
 
   addStock: function(req, res){
+    console.log(req.body.stock)
     db.User
-      .findOneAndUpdate({_id: res.data._id}, req.body)
+      .findOneAndUpdate({_id: req.body._id.id}, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err))
   }
