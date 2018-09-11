@@ -30,9 +30,17 @@ class MyDashboard extends React.Component {
         }).then(res=>{
             if(this.state.user===""){
                 this.props.history.push(`/login/`)
+            }else{
+                this.getSaved(this.state.user)
             }
         })
         .catch(err => console.log(err));
+    }
+
+    getSaved = (id) =>{
+        API.getSaved(id).then(res=>{
+            console.log(res.data)
+        }).catch(err => console.log(err))
     }
 
     renderStocks = (stockSymbols) => {
@@ -85,6 +93,7 @@ class MyDashboard extends React.Component {
 
     componentDidMount = () => {
         this.getuser()
+        // this.getSaved(this.state.user.id)
         this.renderCoins(this.state.cryptoSymbols.join(","));
         this.renderStocks(this.state.stockSymbols.join(","));
     }
