@@ -15,7 +15,7 @@ class MyDashboard extends React.Component {
     state = {
         stocks: [],
         coins: [],
-        stockSymbols: ["AAPL", "PRQR", "RMNI", "SIEB"],
+        stockSymbols: [],
         cryptoSymbols: ["BTCUSDT", "ETHUSDT", "EOSUSDT"],
         user: ""
     }
@@ -23,7 +23,6 @@ class MyDashboard extends React.Component {
     getuser = ()=>{
         API.getuser().then(res=>{
             let user= res.data._id
-            // console.log(res.data._id)
             if(this.state.user !== user && user !== undefined){
                 this.setState({user:user})
             }
@@ -39,8 +38,12 @@ class MyDashboard extends React.Component {
 
     getSaved = (id) =>{
         API.getSaved(id).then(res=>{
-            console.log(res.data)
-        }).catch(err => console.log(err))
+            const savedStocks=res.data.stocks
+            this.setState({stockSymbols:savedStocks})
+        }).then(()=>{
+            this.renderStocks(this.state.stockSymbols.join(","));
+        })
+        .catch(err => console.log(err))
     }
 
     renderStocks = (stockSymbols) => {
@@ -95,7 +98,7 @@ class MyDashboard extends React.Component {
         this.getuser()
         // this.getSaved(this.state.user.id)
         this.renderCoins(this.state.cryptoSymbols.join(","));
-        this.renderStocks(this.state.stockSymbols.join(","));
+        // this.renderStocks(this.state.stockSymbols.join(","));
     }
 
     render() {
