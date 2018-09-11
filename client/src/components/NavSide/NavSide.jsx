@@ -39,18 +39,8 @@ class NavSide extends React.Component {
                     <p>STOCKS AND INFO</p>
                 </div>
                 <div className="nav-content">
-
-                    {/* div .user and div .account should only display if the user is logged in */}
-                    <div className="user">
-                        <img id="img-profile" src={profile} alt="profile" />
-                        <p>{this.state.user}</p>
-                    </div>
-                    <div className="account">
-                        <a href="/" onClick={this.logout}>Logout</a>
-                    </div>
-                    
-                    {/* If the user isn't logged in, display this div below instead */}
-
+                {this.state.user==="" ? (
+                <div>
                     <div className="account-container">
                         <div className="account">
                             <a href="/login">Login</a>
@@ -59,7 +49,38 @@ class NavSide extends React.Component {
                             <a href="/create">Create Account</a>
                         </div>
                     </div>
+                </div>
+                ) : (
+                <div>
+                    <div className="user">
+                        <img id="img-profile" src={profile} alt="profile" />
+                        <p>{this.state.user}</p>
+                    </div>
+                    <div className="account">
+                        <a href="/" onClick={this.logout}>Logout</a>
+                    </div>
+                </div>
+                )}
+                    
+                    {/* If the user isn't logged in, display this div below instead */}
+
                     {/* ---------------------------------------------------- */}
+
+                                  {/* {!this.state.recipes.length ? (
+                <h1 className="text-center">No Recipes to Display</h1>
+              ) : (
+                <RecipeList>
+                  {this.state.recipes.map(recipe => {
+                    return (
+                      <RecipeListItem
+                        key={recipe.title}
+                        title={recipe.title}
+                        href={recipe.href}
+                        ingredients={recipe.ingredients}
+                        thumbnail={recipe.thumbnail}
+                      />
+                    );
+                  })} */}
 
                     {this.props.items.navItems.map((element) => (
                         <Link key={element.key} to={`/${element.key}`}>
