@@ -48,6 +48,10 @@ export default {
 
     addStock: function(stockData){
         return axios.post("/api/addstock", stockData)
+    },
+
+    getSaved: function(id){
+        return axios.get("/api/getsaved", id)
     }
     
 } 
