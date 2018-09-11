@@ -46,8 +46,8 @@ export default {
         return axios.get("/api/logout")
     },
 
-    addStock: function(){
-        return axios.post("/api/addstock")
+    addStock: function(stockData){
+        return axios.post("/api/addstock", stockData)
     }
     
 } 
