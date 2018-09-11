@@ -85,26 +85,6 @@ class NavSide extends React.Component {
                             </div>
                         )}
 
-                    {/* If the user isn't logged in, display this div below instead */}
-
-                    {/* ---------------------------------------------------- */}
-
-                    {/* {!this.state.recipes.length ? (
-                <h1 className="text-center">No Recipes to Display</h1>
-              ) : (
-                <RecipeList>
-                  {this.state.recipes.map(recipe => {
-                    return (
-                      <RecipeListItem
-                        key={recipe.title}
-                        title={recipe.title}
-                        href={recipe.href}
-                        ingredients={recipe.ingredients}
-                        thumbnail={recipe.thumbnail}
-                      />
-                    );
-                  })} */}
-
                     {this.props.items.navItems.map((element) => (
                         <Link key={element.key} to={`/${element.key}`}>
                             <div key={element.key} className="menu-item">

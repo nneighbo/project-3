@@ -15,7 +15,9 @@ class PopularStocks extends React.Component {
         stocks: [],
         buttonText: "Switch To Crpyto",
         switchFunction: () => this.renderCrpto(),
-        tableHead: <TableHead/>
+        tableHead: <TableHead/>,
+        userSavedStocks: [],
+        userSavedCoins: [] 
     }
 
     componentDidMount = () => {

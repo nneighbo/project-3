@@ -44,6 +44,10 @@ export default {
 
     logout: function(){
         return axios.get("/api/logout")
+    },
+
+    addStock: function(){
+        return axios.post("/api/addstock")
     }
     
 } 

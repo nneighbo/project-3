@@ -7,7 +7,8 @@ const UserSchema = new mongoose.Schema({
       index: { unique: true }
     },
     password: String,
-    stocks: Array
+    stocks: Array,
+    coins: Array
   });
 
   UserSchema.methods.validPassword = function validPassword(password) {
