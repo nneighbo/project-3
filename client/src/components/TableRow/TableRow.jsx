@@ -4,17 +4,24 @@ import API from "../../utils/API"
 
 class TableRow extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.handleMouseHover = this.handleMouseHover.bind(this);
+    }
+
     state = {
         clickFunc: () => this.saveSym(),
+        dynamicButton: "Saved!",
         user: {
             id: "",
             coins: [],
             stocks: []
         }
     }
+    
 
     saveSym = (sym) => {
-        console.log(this.props.stockNameShort,"is saved: ",this.props.stockSaved)
+        console.log(this.props.stockNameShort, "is saved: ", this.props.stockSaved)
         console.log(this.props)
         API.addStock()
         .then(req =>{console.log("test",req)})
@@ -24,15 +31,31 @@ class TableRow extends React.Component {
     unSaveSym = (sym) => {
         console.log("unsave")
     }
-    
+
     componentDidMount = () => {
-        if(this.props.stockSaved === true){
-            this.setState({clickFunc: () => this.unSaveSym()})
+        if (this.props.stockSaved === true) {
+            this.setState({ clickFunc: () => this.unSaveSym() })
         }
-        if(this.props.stockSaved === false){
-            this.setState({clickFunc: () => this.saveSym()})
+        if (this.props.stockSaved === false) {
+            this.setState({ clickFunc: () => this.saveSym() })
         }
     }
+
+    handleMouseHover() {
+        this.setState(this.toggleHoverState);
+      }
+    
+      toggleHoverState(state) {
+        if (this.state.dynamicButton === "Saved!") {
+            return {
+                dynamicButton: "Unsave",
+              };
+        } else if (this.state.dynamicButton === "Unsave") {
+            return {
+                dynamicButton: "Saved!",
+              };
+        }
+      }
 
     // parseProp sets up all the data based on the props sent to it.
 
@@ -54,7 +77,8 @@ class TableRow extends React.Component {
             switch (type) {
                 case "button":
                     if (data === true) {
-                        return (<button className="save-stock saved">Saved!</button>)
+                        return (<button onMouseEnter={this.handleMouseHover}
+                            onMouseLeave={this.handleMouseHover} className="save-stock saved">{this.state.dynamicButton}</button>)
                     } else if (data === false) {
                         return (<button className="save-stock">Save</button>)
                     }
@@ -127,9 +151,9 @@ class TableRow extends React.Component {
                     {this.parseProp(this.props.stockDayChangePercent, "percent")}
                 </td>
                 <td
-                onClick={this.state.clickFunc}
+                    onClick={this.state.clickFunc}
                 >
-                {this.parseProp(this.props.stockSaved, "button")}</td>
+                    {this.parseProp(this.props.stockSaved, "button")}</td>
             </tr>
         )
     }

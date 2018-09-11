@@ -11,6 +11,9 @@
     color: #1ab81a;
 }
 
+.save-stock {
+    min-width: 100px;
+}
 
 .saved {
     background-color: #54239c;
