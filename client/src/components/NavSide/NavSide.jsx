@@ -3,12 +3,36 @@ import React from 'react';
 import { Link } from "react-router-dom";
 
 import profile from './temp/doge.jpg';
-import arrow from '../icons/arrow_down.svg'
+// import arrow from '../icons/arrow_down.svg'
 import './NavSide.css';
+import API from "../../utils/API"
 
 class NavSide extends React.Component {
+    state = {
+        user:""
+    };
 
+    componentDidMount(){
+        this.getuser()
+    }
+
+    getuser = ()=>{
+        API.getuser().then(res=>{
+            let user= res.data.email
+            if(this.state.user !== user && user !== undefined){
+                this.setState({user:user})
+                console.log(user)
+            }
+        }).catch(err => console.log(err));
+    }
+
+    logout= ()=>{
+        API.logout()
+    }
+ 
+    
     render() {
+        this.getuser()
         return (
             <div>
                 <div className="logo">
@@ -19,10 +43,10 @@ class NavSide extends React.Component {
                     {/* div .user and div .account should only display if the user is logged in */}
                     <div className="user">
                         <img id="img-profile" src={profile} alt="profile" />
-                        <p>Current User</p>
+                        <p>{this.state.user}</p>
                     </div>
                     <div className="account">
-                        <a href="/logout">Logout</a>
+                        <a href="/" onClick={this.logout}>Logout</a>
                     </div>
                     
                     {/* If the user isn't logged in, display this div below instead */}
