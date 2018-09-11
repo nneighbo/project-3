@@ -16,7 +16,9 @@ class Search extends React.Component {
     state = {
         stock: {},
         coin: {},
-        news: []
+        news: [],
+        userSavedStocks: [],
+        userSavedCoins: [] 
     }
 
     componentDidMount = () => {
