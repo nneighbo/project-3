@@ -1,15 +1,24 @@
 import React from 'react';
-import './TableRow.css'
+import './TableRow.css';
+import API from "../../utils/API"
 
 class TableRow extends React.Component {
 
     state = {
-        clickFunc: () => this.saveSym()
+        clickFunc: () => this.saveSym(),
+        user: {
+            id: "",
+            coins: [],
+            stocks: []
+        }
     }
 
     saveSym = (sym) => {
         console.log(this.props.stockNameShort,"is saved: ",this.props.stockSaved)
         console.log(this.props)
+        API.addStock()
+        .then(req =>{console.log("test",req)})
+        .catch(error => console.log("error",error.response))
     }
 
     unSaveSym = (sym) => {
