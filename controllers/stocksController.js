@@ -10,10 +10,18 @@ module.exports = {
   },
 
   addStock: function(req, res){
-
     db.User
       .findByIdAndUpdate(req.body._id.id,{$push: {stocks:req.body.stock}}, res.body)
       .then(dbModel =>res.json(dbModel))
+
+      .catch(err => res.status(422).json(err))
+  },
+
+  addCoin: function(req, res){
+    db.User
+      .findByIdAndUpdate(req.body._id.id,{$push: {coins:req.body.coin}}, res.body)
+      .then(dbModel =>res.json(dbModel))
+
       .catch(err => res.status(422).json(err))
   },
 

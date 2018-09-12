@@ -50,6 +50,10 @@ export default {
         return axios.post("/api/addstock", stockData)
     },
 
+    addCoin: function(coinData){
+        return axios.post("/api/addcoin", coinData)
+    },
+
     getSaved: function(id){
         return axios.get("/api/getsaved", id)
     }
