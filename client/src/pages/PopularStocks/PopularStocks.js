@@ -27,6 +27,85 @@ class PopularStocks extends React.Component {
         this.renderStock()
     };
 
+    // getuser = () => {
+    //     API.getuser()
+    //         .then(res => {
+    //             let user = res.data._id
+    //             if (this.state.user !== user && user !== undefined) {
+    //                 this.setState({ user: user })
+    //             }
+    //         })
+    //         .then(res => {
+    //             if (this.state.user === "") {
+    //                 this.props.history.push(`/login/`)
+    //             } else {
+    //                 this.getSaved(this.state.user)
+    //             }
+    //         })
+    //         .catch(err => console.log(err));
+    // }
+
+    // checkSaved = (arr1, arr2) => {
+    //     // pull in and sort arrays
+    //     let saved = arr1.sort()
+    //     let unsorted = []
+    //     Object.keys(arr2).map((item, i) => {
+    //         unsorted.push(arr2[item].sym)
+    //     })
+    //     let data = unsorted.sort()
+    //     // pull in and sort arrays
+
+    //     // go through sorted array
+    //     data.forEach((item, i) => {
+    //         // check if matches other array
+    //         if (data.includes(saved[i])) {
+    //             // sets match to variable
+    //             let current = saved[i]
+    //             // maps state object
+    //             console.log
+    //             Object.keys(arr2).map((item, z) => {
+    //                 console.log("fsadd")
+    //                 if (current === arr2[item].sym) {
+    //                     let newStock = Object.assign({}, this.state.stocks[z])
+    //                     newStock.isSaved = true;
+    //                     console.log("fjdsal")
+
+    //                     this.setState({
+    //                         stocks: newStock
+    //                     })
+    //                 }
+    //             })
+    //         }
+    //     })
+    // }
+
+
+    // getSaved = (id) => {
+    //     API.getSaved(id)
+    //         .then(res => {
+    //             let symbols = res.data.stocks
+    //             let coin = []
+    //             let stock = []
+    //             symbols.forEach((item, i) => {
+    //                 if (symbols[i].includes('USDT')) {
+    //                     coin.push(symbols[i])
+    //                 } else {
+    //                     stock.push(symbols[i])
+    //                 }
+    //             })
+
+    //             coin.concat(this.state.user.savedCoins);
+    //             stock.concat(this.state.user.savedStocks);
+    //             this.setState({
+    //                 user: {
+    //                     savedCoins: coin,
+    //                     savedStocks: stock
+    //                 }
+    //             });
+    //             this.renderStock()
+    //         }).catch(err => console.log(err))
+    // }
+
     renderStock = () => {
         let data = [
             API.topFive(),

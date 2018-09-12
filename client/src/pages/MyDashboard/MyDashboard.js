@@ -16,7 +16,7 @@ class MyDashboard extends React.Component {
         stocks: [],
         coins: [],
         stockSymbols: [],
-        cryptoSymbols: ["BTCUSDT", "ETHUSDT", "EOSUSDT"],
+        cryptoSymbols: [],
         user: ""
     }
 
@@ -39,9 +39,12 @@ class MyDashboard extends React.Component {
     getSaved = (id) =>{
         API.getSaved(id).then(res=>{
             const savedStocks=res.data.stocks
+            const savedCoins = res.data.coins
             this.setState({stockSymbols:savedStocks})
+            this.setState({cryptoSymbols:savedCoins})
         }).then(()=>{
             this.renderStocks(this.state.stockSymbols.join(","));
+            this.renderCoins(this.state.cryptoSymbols.join(","));
         })
         .catch(err => console.log(err))
     }
@@ -97,7 +100,6 @@ class MyDashboard extends React.Component {
     componentDidMount = () => {
         this.getuser()
         // this.getSaved(this.state.user.id)
-        this.renderCoins(this.state.cryptoSymbols.join(","));
         // this.renderStocks(this.state.stockSymbols.join(","));
     }
 

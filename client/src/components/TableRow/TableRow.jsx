@@ -35,12 +35,21 @@ class TableRow extends React.Component {
 
 
     saveSym = (sym) => {
-        API.addStock({
-            _id: this.state.user,
-            stock: this.props.stockNameShort
-        })
-            .then(res => { console.log("test", res.data) })
-            .catch(error => console.log("error", error.response))
+        if (this.props.stockNameShort.includes('USDT')) {
+          API.addCoin({
+              _id: this.state.user,
+              coin: this.props.stockNameShort
+          })
+                .then(res => {console.log("test coin", res.data)})
+                .catch(error => console.log("error", error.response))
+        } else {
+            API.addStock({
+                _id: this.state.user,
+                stock: this.props.stockNameShort
+            })
+                .then(res => { console.log("test stock", res.data) })
+                .catch(error => console.log("error", error.response))
+        }
     }
 
     unSaveSym = (sym) => {
