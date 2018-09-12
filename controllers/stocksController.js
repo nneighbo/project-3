@@ -30,5 +30,17 @@ module.exports = {
       .findById(req.user._id)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+
+  removeStock: function(req, res) {
+    console.log(req.query._id);
+    console.log(req.query.stock);
+    // res.send("we made it")
+    // console.log("GooooooodByyyyyyyye " + req.user.stock)
+    db.User
+    .findByIdAndUpdate(req.query._id,{$pull: {stocks:req.query.stock}}, res.body)
+      // .findOneAndRemove({stock:req.query.stock})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
   }
 };

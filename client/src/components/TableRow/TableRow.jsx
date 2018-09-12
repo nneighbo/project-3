@@ -66,6 +66,14 @@ class TableRow extends React.Component {
     }
 
     unSaveSym = (sym) => {
+        console.log(this.state.user)
+        console.log(`remove this: ${this.props.stockNameShort}`)
+        API.removeStock({
+            _id:this.state.user.id,
+            stock:this.props.stockNameShort
+        })
+        .then(req=> () => this.props.onUnsave)
+        .catch(error => console.log("error", error.response))
         console.log("unsave")
     }
 
