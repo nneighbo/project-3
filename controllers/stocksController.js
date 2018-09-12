@@ -10,10 +10,17 @@ module.exports = {
   },
 
   addStock: function(req, res){
-    console.log(req.body._id.id)
     db.User
-      .findOneAndUpdate({_id: req.body._id.id},{$push: {stocks:req.body.stock}}, res.body)
-      .then(dbModel => res.json(dbModel))
+      .findByIdAndUpdate(req.body._id.id,{$push: {stocks:req.body.stock}}, res.body)
+      .then(dbModel =>res.json(dbModel))
+
       .catch(err => res.status(422).json(err))
+  },
+
+  findById: function(req, res) {
+    db.User
+      .findById(req.user._id)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
   }
 };

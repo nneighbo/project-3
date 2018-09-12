@@ -15,9 +15,12 @@ class PopularStocks extends React.Component {
         stocks: [],
         buttonText: "Switch To Crpyto",
         switchFunction: () => this.renderCrpto(),
-        tableHead: <TableHead/>,
-        userSavedStocks: [],
-        userSavedCoins: [] 
+        tableHead: <TableHead />,
+        user: {
+            id: "",
+            savedCoins: [],
+            savedStocks: []
+        }
     }
 
     componentDidMount = () => {
@@ -54,7 +57,8 @@ class PopularStocks extends React.Component {
 
         this.setState({ buttonText: "Switch To Crypto", })
         this.setState({ switchFunction: () => this.renderCrpto() })
-        this.setState({ tableHead: <TableHead/>})
+        this.setState({ tableHead: <TableHead /> })
+
     }
 
     renderCrpto = () => {
@@ -77,13 +81,12 @@ class PopularStocks extends React.Component {
                     info.concat(this.state.stocks);
                     this.setState({ stocks: info });
                 })
-                console.log(info)
             })
             .catch(err => { console.log(err) })
 
         this.setState({ buttonText: "Switch To Stock", })
         this.setState({ switchFunction: () => this.renderStock() })
-        this.setState({ tableHead: <TableHeadCrypto/>})
+        this.setState({ tableHead: <TableHeadCrypto /> })
     }
 
     render() {

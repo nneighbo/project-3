@@ -22,7 +22,6 @@ class TableRow extends React.Component {
     getuser = () => {
         API.getuser().then(res => {
             let user = res.data._id
-            console.log(res.data._id)
             if (this.state.user !== user && user !== undefined) {
                 this.setState({
                     user: {
