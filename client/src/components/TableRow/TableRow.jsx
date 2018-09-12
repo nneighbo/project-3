@@ -6,12 +6,16 @@ class TableRow extends React.Component {
 
     constructor(props) {
         super(props);
-        this.handleMouseHover = this.handleMouseHover.bind(this);
+        this.handleMouseIn = this.handleMouseIn.bind(this);
+        this.handleMouseOut = this.handleMouseOut.bind(this);
+
     }
 
     state = {
         clickFunc: () => this.saveSym(),
-        dynamicButton: "Saved!",
+        saved: false,
+        buttonLabel: "",
+        notSaved: "Save",
         user: {
             id: "",
             coins: [],
@@ -19,32 +23,32 @@ class TableRow extends React.Component {
         }
     }
 
-    getuser = ()=>{
-        API.getuser().then(res=>{
-            let user= res.data._id
+    getuser = () => {
+        API.getuser().then(res => {
+            let user = res.data._id
             // console.log(res.data._id)
-            if(this.state.user !== user && user !== undefined){
+            if (this.state.user !== user && user !== undefined) {
                 this.setState({
                     user: {
-                        id:user
+                        id: user
                     }
                 })
             }
         })
-        .catch(err => console.log(err));
+            .catch(err => console.log(err));
     }
-    
+
 
     saveSym = (sym) => {
         console.log(this.props.stockNameShort, "is saved: ", this.props.stockSaved)
         console.log(this.props)
         API.addStock({
-            _id:this.state.user,
-            stock:this.props.stockNameShort
+            _id: this.state.user,
+            stock: this.props.stockNameShort
         }
         )
-        .then(req =>{console.log("test",req)})
-        .catch(error => console.log("error",error.response))
+            .then(req => { console.log("test", req) })
+            .catch(error => console.log("error", error.response))
     }
 
     unSaveSym = (sym) => {
@@ -59,23 +63,66 @@ class TableRow extends React.Component {
         if (this.props.stockSaved === false) {
             this.setState({ clickFunc: () => this.saveSym() })
         }
+        if (this.state.saved === true) {
+            this.setState({ buttonLabel: "Saved!" })
+        } else if (this.state.saved === false) {
+            this.setState({ buttonLabel: "Save" })
+        }
+
     }
 
-    handleMouseHover() {
-        this.setState(this.toggleHoverState);
-      }
-    
-      toggleHoverState(state) {
-        if (this.state.dynamicButton === "Saved!") {
+    handleClick = () => {
+
+        console.log("clicked")
+        this.setState(this.toggleClickState);
+    }
+
+    handleMouseIn = () => {
+        this.setState(this.toggleHoverState(true));
+    }
+
+    handleMouseOut = () => {
+        this.setState(this.toggleHoverState(false));
+    }
+
+    toggleClickState(state) {
+        if (this.state.saved === true) {
             return {
-                dynamicButton: "Unsave",
-              };
-        } else if (this.state.dynamicButton === "Unsave") {
+                saved: false, buttonLabel: "Save"
+            }
+        } else if (this.state.saved === false) {
             return {
-                dynamicButton: "Saved!",
-              };
+                saved: true, buttonLabel: "Saved!"
+            }
         }
-      }
+        
+        console.log(this.state.saved)
+    }
+    
+    toggleHoverState(hoverType) {
+        if (this.state.saved === true) {
+
+            if (hoverType === true) {
+                return {
+                        buttonLabel:"Unsave"
+                    }
+            } else if (hoverType === false) {
+                return {
+                    buttonLabel:"Saved!"
+                }
+            }
+
+            if (this.state.saved === "Saved!") {
+                return {
+                    saved: "Unsave",
+                };
+            } else if (this.state.saved === "Unsave") {
+                return {
+                    saved: "Saved!",
+                };
+            }
+        }
+    }
 
     // parseProp sets up all the data based on the props sent to it.
 
@@ -96,12 +143,14 @@ class TableRow extends React.Component {
         } else {
             switch (type) {
                 case "button":
-                    if (data === true) {
-                        return (<button onMouseEnter={this.handleMouseHover}
-                            onMouseLeave={this.handleMouseHover} className="save-stock saved">{this.state.dynamicButton}</button>)
-                    } else if (data === false) {
-                        return (<button className="save-stock">Save</button>)
-                    }
+                    // if (data === true) {
+                    //     return (<button onMouseEnter={this.handleMouseHover}
+                    //         onMouseLeave={this.handleMouseHover} onClick={this.handleClick} className="save-stock saved">{this.state.saved}</button>)
+                    // } else if (data === false) {
+                    //     return (<button className={`save-stock  ${this.state.notSaved === "Saved!"? 'saved': ''}`} onClick={this.handleClick}>{this.state.notSaved}</button>)
+                    // }
+                    return (<button className={`save-stock  ${this.state.saved === true ? 'saved' : ''}`} onMouseEnter={this.handleMouseIn}
+                            onMouseLeave={this.handleMouseOut} onClick={this.handleClick}>{this.state.buttonLabel}</button>)
                     break;
                 case "percent":
                 case "dollar":
