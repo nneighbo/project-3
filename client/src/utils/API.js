@@ -52,6 +52,10 @@ export default {
 
     getSaved: function(id){
         return axios.get("/api/getsaved", id)
+    },
+
+    removeStock: function(savedData){
+        return axios.delete("/api/removestock", { params: savedData })
     }
     
 } 

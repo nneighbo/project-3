@@ -5,6 +5,7 @@ const getuserRoute = require("./getuser")
 const logoutRoute = require("./logout")
 const addStock = require("./addStock")
 const getSaved = require("./getSaved")
+const removeStock = require("./removeStock")
 
 router.use("/stocks", stockRoutes);
 router.use("/login", loginRoute);
@@ -12,5 +13,6 @@ router.use("/getuser", getuserRoute)
 router.use("/logout", logoutRoute)
 router.use("/addstock", addStock)
 router.use("/getsaved", getSaved)
+router.use("/removestock", removeStock)
 
 module.exports = router;
